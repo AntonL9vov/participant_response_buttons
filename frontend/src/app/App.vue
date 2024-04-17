@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { DefaultLayout } from "@/shared/ui/layouts/default-layout";
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { DefaultLayout } from '@/shared/ui/layouts/default-layout'
 
-const route = useRoute();
+const route = useRoute()
 
-const layout = computed(() => route.meta?.layout || DefaultLayout);
+const layout = computed(() => route.meta?.layout || DefaultLayout)
 </script>
