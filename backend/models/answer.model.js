@@ -3,6 +3,9 @@ module.exports = (sequelize, Sequelize) => {
     userId: {
       type: Sequelize.INTEGER,
     },
+    time: {
+      type: Sequelize.DATE,
+    }
   });
 
   return Answer;

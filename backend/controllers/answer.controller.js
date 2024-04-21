@@ -1,5 +1,5 @@
 const db = require("../models");
-const Round = db.answers;
+const Answer = db.answers;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -15,10 +15,11 @@ exports.create = (req, res) => {
   const answer = {
     name: req.body.userId,
     roomId: req.body.roomId,
+    time: new Date().getTime(),
   };
 
   // Save Tutorial in the database
-  Round.create(answer)
+  Answer.create(answer)
     .then((data) => {
       res.send(data);
     })
@@ -31,12 +32,13 @@ exports.create = (req, res) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-  const roomId = req.query.roomId;
+  const roundId = req.query.roundId;
 
-  Round.findAll({ where: { roomId: roomId } })
+  Answer.findAll({ where: { roundId: roundId } })
     .then((data) => {
       if (data) {
         res.send(data);
+        console.log(data);
       } else {
         res.status(404).send({
           message: `Cannot find Room with id=${id}.`,
@@ -54,7 +56,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Round.findByPk(id)
+  Answer.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
@@ -74,7 +76,7 @@ exports.findOne = (req, res) => {
 exports.updateRound = (req, res) => {
   const id = req.params.id;
 
-  Round.update(req.body, {
+  Answer.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
