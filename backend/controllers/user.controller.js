@@ -82,7 +82,7 @@ exports.enterTheRoom = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: `Error updating User with id=${id}, error: ${err}`,
       });
     });
 };
